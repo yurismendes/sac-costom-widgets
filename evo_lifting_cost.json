@@ -1,0 +1,51 @@
+{
+  "id": "com.petroreconcavo.liftingcost.executive",
+  "version": "1.2.0",
+  "name": "Lifting Cost Executive",
+  "description": "Análise de custo total em R$: Item financeiro > G4_O, por Data e Versão Orçado/Realizado.",
+  "newInstancePrefix": "LiftingCostExecutive",
+  "vendor": "Yuri Souza",
+  "eula": "",
+  "license": "",
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "evo-lifting-cost-executive",
+      "url": "https://yurismendes.github.io/sac-costom-widgets/evo-lifting-cost.js?v=2",
+      "integrity": "",
+      "ignoreIntegrity": true
+    }
+  ],
+  "properties": {
+    "width": {
+      "type": "integer",
+      "default": 1400
+    },
+    "height": {
+      "type": "integer",
+      "default": 900
+    }
+  },
+  "methods": {},
+  "events": {
+    "monthFilterChanged": {
+      "description": "Alteração do mês local. Detail: { selectedMonth: \"YYYY-MM\" ou \"__all__\", isAllMonths: boolean }."
+    }
+  },
+  "dataBindings": {
+    "financialData": {
+      "feeds": [
+        {
+          "id": "dimensions",
+          "description": "Ordem: 1. Item financeiro; 2. G4_O; 3. Data; 4. Versão (Orçado/Realizado).",
+          "type": "dimension"
+        },
+        {
+          "id": "measures",
+          "description": "Uma medida: Lifting Cost — custo total em R$.",
+          "type": "mainStructureMember"
+        }
+      ]
+    }
+  }
+}
