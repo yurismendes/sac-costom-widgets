@@ -1,0 +1,123 @@
+{
+  "id": "com.evostream.onepager",
+  "version": "1.9.71",
+  "name": "One Pager",
+  "description": "One Pager - comparativos anuais por contas ou dimensoes, deltas percentuais configuraveis, ITR com ou sem drilldown, BP classificado e BP livre.",
+  "newInstancePrefix": "One Pager",
+  "vendor": "Mario Argolo",
+  "eula": "",
+  "license": "",
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "one-pager",
+      "url": "/one-pager.js",
+      "integrity": "sha256-xTH7zFAd52yNs/EJzAAz4EN7bIuSlMmE3D27womdtJM=",
+      "ignoreIntegrity": false
+    },
+    {
+      "kind": "styling",
+      "tag": "one-pager-styling",
+      "url": "/one-pager-styling.js",
+      "integrity": "sha256-9sVEHJFTTre22nSVpRTMWhKZAERmMquvZuYUs1m35ek=",
+      "ignoreIntegrity": false
+    }
+  ],
+  "supportsExport": true,
+  "supportsViewportLoading": true,
+  "properties": {
+    "accountCaptionSync": {
+      "type": "string",
+      "description": "Mensagem interna de sincronizacao das descricoes do feed com o painel BP; nao altera configuracoes das contas.",
+      "default": ""
+    },
+    "accountMeasureMap": {
+      "type": "string",
+      "description": "Mapa JSON por conta: medida, apresentacao, regras, subordinados, abertura no ITR com drilldown por conta, bpSection (Ativo/Passivo/PL) e bpClassification (current/non_current) no BP classificado.",
+      "default": "{}"
+    },
+    "showTotal": {
+      "type": "string",
+      "description": "Controla exibicao da linha Total na tabela (true/false).",
+      "default": "true"
+    },
+    "deltaAbsDecimals": {
+      "type": "string",
+      "description": "Casas decimais para colunas Delta Abs (vazio = usa decimais da conta).",
+      "default": ""
+    },
+    "deltaPctDecimals": {
+      "type": "string",
+      "description": "Casas decimais para colunas Delta % (vazio = usa decimais da conta).",
+      "default": ""
+    },
+    "scenarioConfig": {
+      "type": "string",
+      "description": "JSON global para versao/cenario (alias da dimensao, override de membros Realizado/Orcado e apelidos dos titulos de colunas).",
+      "default": "{}"
+    },
+    "typographyConfig": {
+      "type": "string",
+      "description": "JSON global para tamanhos de fonte e espacamento vertical das linhas nos presets ITR e BP.",
+      "default": "{}"
+    },
+    "widgetTitle": {
+      "type": "string",
+      "description": "Titulo principal do widget.",
+      "default": "One Page Summary"
+    },
+    "footerNotes": {
+      "type": "string",
+      "description": "Notas de rodape em texto simples, com quebras de linha, ate 4000 caracteres. Disponiveis em todos os presets e incluidas na imagem; vazio oculta. Nao altera calculos nem copia de dados para Excel.",
+      "default": ""
+    },
+    "indicatorHeaderLabel": {
+      "type": "string",
+      "description": "Texto do cabecalho da primeira coluna (ex.: INDICATOR).",
+      "default": "INDICATOR"
+    },
+    "viewConfig": {
+      "type": "string",
+      "description": "JSON de visualizacao e ordem das linhas. percentageComparisons permite anexar comparacoes percentuais por ano e versao; o padrao compara Average 2026 e Forecast 2026 com Budget 2027. Use [] para desativar. O calculo e (primeiro valor - segundo valor) / segundo valor. BP usa bpOpeningPeriod (YYYY-MM, padrao 2024-12); somente no BP livre, bpColumnLayout permite comparison ou last_5_itrs.",
+      "default": "{}"
+    },
+    "itrDimensionConfig": {
+      "type": "string",
+      "description": "Mapeamento opcional das dimensoes de Data, Medidas e Versao nos presets ITR por contas, ITR com drilldown por conta, BP classificado e BP livre; vazio preserva a deteccao automatica.",
+      "default": "{}"
+    },
+    "basePeriodConfig": {
+      "type": "string",
+      "description": "JSON para Data Base fixa ou automatica; auto preserva a logica atual de periodo base.",
+      "default": "{}"
+    },
+    "formulaAuditRequest": {
+      "type": "string",
+      "description": "Solicitacao transitoria para abrir a memoria de calculo de um indicador subordinado.",
+      "default": ""
+    },
+    "calculatedIndicators": {
+      "type": "string",
+      "description": "Catalogo JSON de indicadores calculados reutilizaveis em Anual por contas, nos presets ITR e no BP livre, incluindo formula, dependencias, exibicao e formatacao. No BP livre, bpCalculationPeriod define balance (padrao) ou last_12_months.",
+      "default": "{}"
+    }
+  },
+  "methods": {},
+  "events": {},
+  "dataBindings": {
+    "financialData": {
+      "feeds": [
+        {
+          "id": "accounts",
+          "description": "Contas do modelo (mainStructureMember).",
+          "type": "mainStructureMember"
+        },
+        {
+          "id": "dimensions",
+          "description": "Dimensoes de contexto (Versao, Data, Empresa, etc.).",
+          "type": "dimension"
+        }
+      ]
+    }
+  }
+}
